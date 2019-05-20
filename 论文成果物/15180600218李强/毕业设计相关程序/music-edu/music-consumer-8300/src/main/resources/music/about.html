@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Free Events Club Website Template | About </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- 最新版本的 jquery文件 文件 -->
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <script src="./js/jquery-latest.js"></script>
+    <!--jquery cookie文件-->
+    <script src="./js/jquery.cookie-1.4.1.js"></script>
+    <!--config.js-->
+    <script type="text/javascript" src="./js/config.js"></script>
+    <!--页面头初始化的公共方法-->
+    <script type="text/javascript" src="./page/component/initPage.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="header_top">
+    </div>
+</div>
+<div class="main">
+    <div class="wrap">
+        <div class="content_top">
+            <div class="section group">
+                <div class="col_1_of_3 span_1_of_3">
+                    <h2><span>欢迎您</span></h2>
+                    <h4>古典音乐爱好者生态圈</h4>
+                    <p>&nbsp;&nbsp;古典音乐有广义、狭义之分。广义是指那些从西方中世纪开始至今的、在欧洲主流文化背景下创作的西方古典音乐，主要因其复杂多样的创作技术和所能承载的厚重内涵而有别于通俗音乐和民间音乐。狭义指古典主义音乐，是1750－1820年这一段时间的欧洲主流音乐，又称维也纳古典乐派。此乐派三位最著名的作曲家是海顿、莫扎特和贝多芬。</p>
+                    <p>&nbsp;&nbsp;古典音乐是一个含义广泛的术语，广义的西洋古典音乐 是指那些从西方中世纪开始至今、并在欧洲主流文化背景下创作的音乐，或者指植根于西方传统礼拜式音乐和世俗音乐，其范围涵盖了约公元9世纪至今的全部时期。主要因其复杂多样的创作技术和所能承载的厚重内涵而有别于通俗音乐和民间音乐。在地理上，这些音乐主要创作于欧洲和美洲，这是相对于非西方音乐而言的。另外，西洋古典音乐主要以乐谱记录和传播，和大多数民间音乐口传心授的模式不同。</p>
+                    <p>&nbsp;&nbsp;古典音乐（classical music）本来是专指德奥在1750—1830年间以海顿、莫扎特、贝多芬为代表的音乐，即所谓“维也纳古典乐派”的音乐（或翻译为“维也纳古典主义音乐”）。这就是狭义的古典音乐。</p>
+                </div>
+                <div class="col_1_of_3 span_1_of_3">
+                    <div class="menu_timmings">
+                        <ul>
+                            <li>
+                                <div class="txt1">Main Menu</div>
+                                <div class="txt2 color1">12am - 12pm</div>
+                            </li>
+                            <li>
+                                <div class="txt1">Beer Festival</div>
+                                <div class="txt2 color2">9am - 8pm</div>
+                            </li>
+                            <li>
+                                <div class="txt1">Live Music</div>
+                                <div class="txt2 color3">7pm - 12pm</div>
+                            </li>
+                            <li>
+                                <div class="txt1">Disco Dance</div>
+                                <div class="txt2 color4">8pm - 2am</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col_1_of_3 span_1_of_3">
+                    <h2><span>大事件</span></h2>
+                    <div class="event-grid">
+                        <div class="event_img">
+                            <img src="images/event1.jpg" title="post1" alt="">
+                        </div>
+                        <div class="event_desc">
+                            <h4><span>NEQUE LIGULA</span></h4>
+                            <h4>Aug 28Th, 2013</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur dolor more normal of letters,<a
+                                    href="video.html">[...]</a></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="event-grid">
+                        <div class="event_img">
+                            <img src="images/event2.jpg" title="post1" alt="">
+                        </div>
+                        <div class="event_desc">
+                            <h4><span>DOLORE IPSUM</span></h4>
+                            <h4>Aug 2ND, 2013</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur dolor more normal of letters,<a
+                                    href="video.html">[...]</a></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="event-grid">
+                        <div class="event_img">
+                            <img src="images/event3.jpg" title="post1" alt="">
+                        </div>
+                        <div class="event_desc">
+                            <h4><span>NEQUE LIGULA</span></h4>
+                            <h4>july 28Th, 2013</h4>
+                            <p>Lorem ipsum dolor sit amet consectetur dolor more normal of letters,<a
+                                    href="video.html">[...]</a></p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="view-all"><a href="video.html">ViewAll</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+</div>
+<div class="copy">
+</div>
+<script>
+    //初始化加载页面
+    $(function () {
+        //initPage中添加静态header和footer
+        addHeaderAndFooter();
+    });
+
+    //当所有文档和页面都加载完毕后绑定header的事件和显示
+    window.onload=function () {
+        //initPage中为header绑定事件
+        initHeader("menuAbout");
+    };
+</script>
+</body>
+</html>
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>404--layui后台管理模板</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+    <!-- 最新版本的 jquery文件 文件 -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+        /*背景整体样式布局*/
+        body {
+            background: #EAEDF1;
+        }
+        .layui-fluid {
+            background: white;
+        }
+        /*整个布局的边距*/
+        .layui-fluid {
+            margin: 10px 10px 0px 10px;
+        }
+        /*内容居右*/
+        .content_right {
+            text-align: right;
+        }
+        /*共xx页信息显示*/
+        .page_message {
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #666666;
+        }
+        /*状态信息显示 默认未发布状态*/
+        .state_unpub {
+            background: #F39C12;
+            border-radius: 2px;
+            display: inline-block;
+            padding: 3px 10px;
+            font-family: PingFangSC-Medium;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+        /*已发布状态*/
+        .pub {
+            background: #19BC9C;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row" >
+        <div class="layui-col-md12" style="margin: 10px 10px">
+            <button class="layui-btn layui-btn-normal" id="enableUser">启用</button>
+            <button class="layui-btn layui-btn-danger" id="disableUser">禁用</button>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <table class="layui-table" lay-skin="line">
+                <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                <td>amdin</td>
+                <td>启用</td>
+                <td>
+                    <div class="layui-form">
+                        <input type="checkbox" lay-skin="primary" lay-filter="checkAll">
+                    </div>
+                </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--分页-->
+    <div class="layui-row">
+        <div class="layui-col-md12 content_right">
+            <span class="page_message">共2条</span>
+            <div id="pageNumber">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layui/layui.js"></script>
+<script src="../../js/config.js" type="text/javascript" charset="utf-8"></script>
+<script src="manage.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

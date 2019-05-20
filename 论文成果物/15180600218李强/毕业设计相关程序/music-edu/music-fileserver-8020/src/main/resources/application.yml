@@ -1,0 +1,48 @@
+server:
+  port: 8020
+
+spring:
+  application:
+    name: music-fileserver                           #对外暴漏的微服务名字
+
+file:
+  #静态资源对外暴露的访问路径
+  staticAccessPath: /music/download/**
+  #文件上传目录(实际物理地址)
+  #uploadFolder: c:/PoliceChangPing/uploadFolder/
+  #正式环境目录(实际物理地址)
+  uploadFolder: /home/sleepy/music/uploadFolder/
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 600000
+  threadpool:
+    default:
+      coreSize: 20
+
+
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:7000/eureka/
+      #defaultZone: http://${eureka.instance.hostname}:7000/eureka/,http://${eureka.instance.hostname}:7001/eureka/,http://${eureka.instance.hostname}:7002/eureka/
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    hostname: www.music.com #eureka服务端的实例名称
+    instance-id: fileserver-8020
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+info:
+  app.name: tencent-mpm
+  company.name: www.tencent.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}

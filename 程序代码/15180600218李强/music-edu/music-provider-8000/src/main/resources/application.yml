@@ -1,0 +1,85 @@
+server:
+  port: 8000
+
+#数据源 默认使用tomcat.jdbc数据源
+spring:
+  application:
+    name: music-provider                            #对外暴漏的微服务名字
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://www.music.com:3307/music?useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+    #指定数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    #指定数据源的配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#mybatis配置
+mybatis:
+  # 指定全局配置文件位置
+  config-location: classpath:mybatis/mybatis-config.xml
+  # 指定sql映射文件位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+file:
+  #静态资源对外暴露的访问路径
+  staticAccessPath: /music/download/**
+  #文件上传目录(实际物理地址)
+  #uploadFolder: c:/PoliceChangPing/uploadFolder/
+  #正式环境目录(实际物理地址)
+  uploadFolder: /home/sleepy/music/uploadFolder/
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 600000
+  threadpool:
+    default:
+      coreSize: 20
+
+
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:7000/eureka/
+      #defaultZone: http://${eureka.instance.hostname}:7000/eureka/,http://${eureka.instance.hostname}:7001/eureka/,http://${eureka.instance.hostname}:7002/eureka/
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    hostname: www.music.com #eureka服务端的实例名称
+    instance-id: provier-8000
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+info:
+  app.name: tencent-mpm
+  company.name: www.tencent.com
+  build.artifactId: ${project.artifactId}
+  build.version: ${project.version}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

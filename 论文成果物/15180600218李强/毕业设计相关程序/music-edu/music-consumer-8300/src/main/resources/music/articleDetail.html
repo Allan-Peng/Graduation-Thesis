@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<head>
+    <title>文章详情页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!-- 最新版本的 jquery文件 文件 -->
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <script src="./js/jquery-latest.js"></script>
+    <!--jquery cookie文件-->
+    <script src="./js/jquery.cookie-1.4.1.js"></script>
+    <!-- 最新版本的 Bootstrap  -->
+   <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">-->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="./js/bootstrap.min.js"></script>
+    <link href="./css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--config.js-->
+    <script type="text/javascript" src="./js/config.js"></script>
+    <!--页面头初始化的公共方法-->
+    <script type="text/javascript" src="./page/component/initPage.js"></script>
+</head>
+<body>
+<div class="header">
+    <div class="header_top">
+    </div>
+</div>
+<div class="main">
+    <div class="wrap">
+        <div class="content_top">
+            <div class="blog">
+                <!--文章内容采用boostrap布局-->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 id="title">文章标题</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p id="brief">简介</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="content">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3 id="author" style="color: #fff">作者</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 id="updateTime" style="color: #fff">时间</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+</div>
+<div class="copy">
+</div>
+<script>
+    //初始化加载页面
+    $(function () {
+        //initPage中添加静态header和footer
+        addHeaderAndFooter();
+        initArticleDetail();
+    });
+
+    //当所有文档和页面都加载完毕后绑定header的事件和显示
+    window.onload = function () {
+        //initPage中为header绑定事件
+        initHeader("menuArticle");
+    };
+
+    function initArticleDetail() {
+        //获取连接中的文章id
+        var articleId=getPara("id");
+        //根据id发送ajax请求获取数据
+        $.ajax({
+            url: serverUrl + "/getArticleById/" + articleId,
+            type: "get",
+            //服务器返回相应的内容格式
+            dataType: 'json',
+            //请求成功后的回调函数
+            success: function (data) {
+                if (data.code ===100) {
+                    adapterArticleDetail(data.extend.note)
+                }else{
+                    //layer.msg(data.msg);
+                }
+            }
+        });
+
+       /* */
+    }
+    function adapterArticleDetail(article) {
+        //文章内容的适配
+        $('#content').html(article.content);
+        replaceSrc("img");
+        replaceSrc("video");
+        //文章标题
+        $('#title').text(article.title);
+        //时间
+        $('#updateTime').text(timestampToTime(article.updateTime));
+        //作者
+        $('#author').text(article.author);
+        //简介
+        $('#brief').text(article.brief);
+    }
+    function replaceSrc(lable) {
+        $.each($('#content').find(lable),function () {
+            //数据库中的地址
+            var lableName=$(this).attr('src');
+            //拼串后回显的地址
+            $(this).attr('src', zuulUrlFile+lableName);
+        });
+    }
+</script>
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+server:
+  port: 8300
+
+spring:
+  application:
+    name: music-consumer                           #对外暴漏的微服务名字
+# web静态页面路径
+spring.resources.static-locations: classpath:/music/
+
+file:
+  #静态资源对外暴露的访问路径
+  staticAccessPath: /music/download/**
+  #文件上传目录(实际物理地址)
+  #uploadFolder: c:/PoliceChangPing/uploadFolder/
+  #正式环境目录(实际物理地址)
+  uploadFolder: /home/sleepy/music/uploadFolder/
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 600000
+  threadpool:
+    default:
+      coreSize: 20
+
+
+ribbon:
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:7000/eureka/
+      #defaultZone: http://${eureka.instance.hostname}:7000/eureka/,http://${eureka.instance.hostname}:7001/eureka/,http://${eureka.instance.hostname}:7002/eureka/
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: consumer-8300
+    prefer-ip-address: true     #访问路径可以显示IP地址
+    hostname: www.music.com
+
+

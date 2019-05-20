@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Free Events Club Website Template | Gallery </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+
+    <!-- 最新版本的 jquery文件 文件 -->
+    <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+    <script src="./js/jquery-latest.js"></script>
+    <!--jquery cookie文件-->
+    <script src="./js/jquery.cookie-1.4.1.js"></script>
+    <!--config.js-->
+    <script type="text/javascript" src="./js/config.js"></script>
+    <!--页面头初始化的公共方法-->
+    <script type="text/javascript" src="./page/component/initPage.js"></script>
+
+    <!------ Light Box ------>
+    <link rel="stylesheet" href="css/swipebox.css">
+    <script src="js/ios-orientationchange-fix.js"></script>
+    <script src="js/jquery.swipebox.min.js"></script>
+    <!------ Eng Light Box ------>
+</head>
+<body>
+<div class="header">
+    <div class="header_top">
+    </div>
+</div>
+<div class="main">
+    <div class="wrap">
+        <div class="content_top">
+            <div class="gallery">
+                <h3>全站图片</h3>
+                <!--<div class="section group">
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img1_b.jpg" class="swipebox" title="Image Title">
+                            <img src="images/gallery_img1.jpg" alt=""><span class="zoom-icon"></span>
+                        </a>
+                    </div>
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img2_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img2.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img3_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img3.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img4_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img4.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                </div>-->
+                <!--<div class="section group">
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img5_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img5.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img6_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img6.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img7_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img7.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img8_b.jpg" class="swipebox" title="Image Title"> <img
+                                src="images/gallery_img8.jpg" alt=""><span class="zoom-icon"></span> </a>
+                    </div>
+                </div>-->
+                <!--<div class="projects-bottom-paination">
+                    <ul>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                    </ul>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+</div>
+<div class="copy">
+</div>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $(".swipebox").swipebox();
+    });
+</script>
+<script>
+    //初始化加载页面
+    $(function () {
+        //initPage中添加静态header和footer
+        addHeaderAndFooter();
+        //初始化图片
+        initImg();
+    });
+
+    //当所有文档和页面都加载完毕后绑定header的事件和显示
+    window.onload = function () {
+        //initPage中为header绑定事件
+        initHeader("menuImg");
+    };
+
+    function initImg() {
+        $.ajax({
+            url: serverUrl + "/getImg",
+            type: "get",
+            //服务器返回相应的内容格式
+            dataType: 'json',
+            //请求成功后的回调函数
+            success: function (data) {
+                if (data.code == 100) {
+                    adapterImg(data.extend.imgs)
+                } else {
+                    layer.msg(data.msg);
+                }
+            }
+        });
+    }
+
+    /*
+    *<div class="gallery">
+    *           <div class="section group">
+    *
+                    <div class="grid_1_of_4 images_1_of_4">
+                        <a href="images/gallery_img1_b.jpg" class="swipebox" title="Image Title">
+                            <img src="images/gallery_img1.jpg" alt=""><span class="zoom-icon"></span>
+                        </a>
+                    </div>
+
+                </div>*/
+    function adapterImg(imgs) {
+        $.each(imgs, function (i, item) {
+            //构造一个内容
+            var $content = $(
+                '<div class="grid_1_of_4 images_1_of_4">' +
+                '<a href="'+zuulUrlFile+item+'" class="swipebox" title="Image Title">' +
+                '<img src="'+zuulUrlFile+item+'" style="width: 500px;height: 300px" alt="暂无图片"><span class="zoom-icon"></span>' +
+                '</a>' +
+                '</div>'
+            );
+            var realGroupId = "group" +  parseInt(i / 4);
+            if (i % 4 === 0) {
+                var $group = $('<div class="section group">');
+                $group.attr("id", realGroupId);
+                $group.append($content);
+                $('.gallery').append($group)
+            } else {
+                $('#' + realGroupId).append($content);
+            }
+        });
+    }
+</script>
+</body>
+</html>
+
