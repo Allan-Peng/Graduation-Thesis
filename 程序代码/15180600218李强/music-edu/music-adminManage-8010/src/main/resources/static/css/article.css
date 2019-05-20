@@ -1,0 +1,188 @@
+/*背景整体样式布局*/
+body {
+	background: #EAEDF1;
+}
+.layui-fluid {
+	background: white;
+}
+/*整个布局的边距*/
+.layui-fluid {
+	margin: 10px 10px 0px 10px;
+}
+/*内容居右*/
+.content_right {
+	text-align: right;
+}
+/*必须填写-重点红* */
+.point {
+	color: red;
+}
+/*导航栏按钮*/
+.nav_btn {
+	height: 40px;
+	background: #F0F0F0;
+	text-align: center;
+	line-height: 40px;
+	display: inline-block;
+	margin: 10px 5px;
+	padding: 0px 18px;
+	font-family: PingFangSC-Medium;
+	font-size: 15px;
+	color: #666666;
+}
+/*导航栏按钮选中*/
+.btn_active {
+	background: #50A3FF;
+	color: #FFFFFF;
+}
+/*导航栏右侧重写了layui form 限定为#articleList（.layui-fluid）*/
+#articleList .layui-form {
+	margin: 10px;
+	display: inline-block;
+	vertical-align: center;
+}
+/*下拉框 限定为#articleList（.layui-fluid）*/
+#articleList .layui-form-select {
+	display: inline-block;
+	width: 100px;
+	text-align: left;
+}
+/*搜索框*/
+.search {
+	margin-left: 10px;
+	display: inline-block;
+}
+/*搜索icon*/
+.search-icon {
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	text-align: center;
+	line-height: 40px;
+	margin-left: -40px;
+	position: absolute;
+	z-index: 999;
+}
+/*刷新icon*/
+.refresh {
+	height: 40px;
+	width: 40px;
+	background: #EDF5FF;
+	display: inline-block;
+	text-align: center;
+	line-height: 40px;
+	margin-left: 10px;
+}
+/*表格样式*/
+.layui-table thead tr {
+	background-color: #F6F7FB;
+	font-family: PingFangSC-Medium;
+	font-size: 16px;
+	color: #333333;
+}
+/*table表头加粗*/
+.layui-table th {
+	font-weight: bold;
+}
+/*状态信息显示 默认未发布状态*/
+.state_unpub {
+	background: #F39C12;
+	border-radius: 2px;
+	display: inline-block;
+	padding: 3px 10px;
+	font-family: PingFangSC-Medium;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+/*已发布状态*/
+.pub {
+	background: #19BC9C;
+}
+/*标题内容过多自动省略*/
+.layui-table tbody td:nth-child(3) p {
+	/*width: 100px;*/
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+/*多选框*/
+.checkbox {
+	background: #FFFFFF;
+	border: 2px solid #C9D8FC;
+	border-radius: 2px;
+	width: 14px;
+	height: 14px;
+}
+/*分页*/
+#pageNumber {
+	display: inline-block;
+	margin-left: 10px;
+}
+/*当前页样式*/
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+	background-color: #50A3FF;
+}
+/*共xx页信息显示*/
+.page_message {
+	font-family: PingFangSC-Medium;
+	font-size: 14px;
+	color: #666666;
+}
+
+
+
+/*新增文章部分  默认不显示*/
+#articleAdd {
+	display: none;
+}
+/*新增文章页面的layui-form 限定为#articleAdd（layui-fluid）*/
+#articleAdd .layui-form {
+	margin: 0px;
+	display: block;
+	vertical-align: center;
+	height: 600px;
+}
+/*下拉框 限定为#articleAdd（layui-fluid）*/
+#articleAdd .layui-form-select {
+	width: 100%;
+}
+/*表单提示信息 限定为#articleAdd（layui-fluid）*/
+#articleAdd .layui-form-label {
+	width: 110px;
+}
+/*表单后inputblock 限定为#articleAdd（layui-fluid）*/
+#articleAdd .layui-input-block {
+	margin-left: 140px;
+}
+/*上传图片展示*/
+.upload_img {
+	width: 120px;
+	height: 120px;
+	display: inline-block;
+	border: 1px solid black;
+	vertical-align: top;
+	margin: 11px 15px 0px 30px;
+}
+/*上传图片名称*/
+.upload_imgname {
+	display: inline-block;
+	vertical-align: bottom;
+	margin-bottom: 5px;
+	font-family: PingFangSC-Medium;
+	font-size: 14px;
+	color: #333333;
+	text-align: right;
+}
+/*返回未被激活*/
+.no_active {
+	background: #EDF5FF;
+	font-family: PingFangSC-Medium;
+	font-size: 16px;
+	color: #50A3FF;
+	text-align: center;
+}
+/*umeditor a标签样式修复*/
+#type a:link{color: #0000ff} /* 未访问的链接 */
+#type a:visited {color: purple} /*已访问的链接*/
+#type a:hover {color: #777}  /*鼠标移动到链接上*/
+/*#type a:active {color: #0000FF}  选定的链接 */
