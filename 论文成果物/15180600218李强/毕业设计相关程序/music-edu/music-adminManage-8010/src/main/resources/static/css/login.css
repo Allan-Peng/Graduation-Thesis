@@ -1,0 +1,38 @@
+body{overflow:hidden;}
+
+.login{
+    height:300px;
+    width:450px;
+    padding: 20px;
+    position:absolute;
+    left: 50%;top: 50%;
+    margin:-170px 0 0 -250px;
+    z-index:99;
+}
+.login_form {
+    background: rgba(255,255,255,0.89);
+    box-shadow: 0 2px 34px 0 rgba(39,52,125,0.25);
+    border-radius: 12px;
+    padding: 20px;
+}
+.login h1{ text-align:center; color:#fff; font-size:24px; margin-bottom:20px; }
+.login_btn{
+    width:100%;
+    background-color: rgba(255,255,255,0.89);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url("../images/loginbtn.png");
+}
+.login_bg {
+    width: 100%;
+    height:0;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../images/login-header.png");
+    padding-bottom: 25%;
+}
+.login_label {
+    font-family: PingFangSC-Semibold;
+    font-size: 14px;
+    color: #333333;
+}
